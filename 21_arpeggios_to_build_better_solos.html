@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21 Arpeggios to Build Better Solos</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        studio: {
+                            900: '#0B0D12',
+                            800: '#141721',
+                            700: '#1E2333',
+                            600: '#2A3047',
+                            500: '#3F4766'
+                        },
+                        neon: {
+                            cyan: '#00F0FF',
+                            amber: '#FFB800',
+                            purple: '#A855F7',
+                            rose: '#F43F5E',
+                            emerald: '#10B981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0D12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2A3047;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3F4766;
+        }
+
+        /* Fretboard Styling */
+        .fretboard-container {
+            background: linear-gradient(180deg, #181512 0%, #0d0a08 100%);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+        .fret-wire {
+            background: linear-gradient(90deg, #888 0%, #e0e0e0 50%, #666 100%);
+            box-shadow: 1px 0 3px rgba(0,0,0,0.5);
+        }
+        .guitar-string {
+            background: linear-gradient(180deg, #c5c5c5 0%, #777 100%);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+        .wound-string {
+            background: repeating-linear-gradient(
+                90deg,
+                #999,
+                #999 1px,
+                #555 1px,
+                #555 2px
+            );
+        }
+
+        /* Piano Keyboard Styling */
+        .piano-container {
+            background: #0B0D12;
+        }
+        .white-key {
+            background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+            border: 1px solid #cbd5e1;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            transition: all 0.1s ease;
+        }
+        .white-key.active {
+            background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%);
+            transform: translateY(2px);
+        }
+        .black-key {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            box-shadow: 2px 3px 5px rgba(0,0,0,0.6);
+            transition: all 0.1s ease;
+            z-index: 10;
+        }
+        .black-key.active {
+            background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+            transform: translateY(2px);
+        }
+
+        /* Subtle Glow Effects */
+        .glow-cyan {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+        .glow-amber {
+            box-shadow: 0 0 15px rgba(255, 184, 0, 0.4);
+        }
+        .glow-purple {
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-studio-900 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-neon-cyan selection:text-studio-900">
+
+    <!-- TOP HEADER -->
+    <header class="border-b border-studio-700 bg-studio-800/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-neon-cyan via-neon-purple to-neon-amber flex items-center justify-center shadow-lg">
+                    <i class="fa-solid fa-guitar text-studio-900 text-xl font-black"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg sm:text-xl tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+                        21 ARPEGGIOS
+                    </h1>
+                    <p class="text-xs text-neon-cyan font-mono tracking-widest uppercase">To Build Better Solos</p>
+                </div>
+            </div>
+
+            <!-- Global Controls & Navigation Tabs -->
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <nav class="flex bg-studio-900/80 p-1 rounded-xl border border-studio-700/60">
+                    <button id="nav-fretboard-btn" onclick="switchTab('explorer')" class="tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 bg-studio-700 text-white shadow-sm flex items-center space-x-2">
+                        <i class="fa-solid fa-[#fa-sliders] fa-sliders"></i>
+                        <span class="hidden sm:inline">Explorer & Audio</span>
+                        <span class="sm:hidden">Explore</span>
+                    </button>
+                    <button id="nav-matrix-btn" onclick="switchTab('matrix')" class="tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 text-slate-400 hover:text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-diagram-project"></i>
+                        <span class="hidden sm:inline">Solo Substitutions</span>
+                        <span class="sm:hidden">Matrix</span>
+                    </button>
+                    <button id="nav-quiz-btn" onclick="switchTab('quiz')" class="tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 text-slate-400 hover:text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span class="hidden sm:inline">Trainer & Quiz</span>
+                        <span class="sm:hidden">Quiz</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-6">
+
+        <!-- TAB 1: EXPLORER & VISUALIZER VIEW -->
+        <section id="tab-explorer" class="space-y-6">
+            
+            <!-- TOP CONTROL PANEL: ROOT & ARPEGGIO SELECTOR -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                
+                <!-- Root Note Selector -->
+                <div class="lg:col-span-4 bg-studio-800 border border-studio-700 rounded-2xl p-4 flex flex-col justify-between shadow-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider">1. Select Key / Root</span>
+                        <span id="current-root-display" class="text-sm font-bold text-neon-cyan font-mono bg-studio-900 px-2.5 py-0.5 rounded-md border border-studio-700">C</span>
+                    </div>
+                    <div class="grid grid-cols-6 gap-1.5" id="root-buttons-container">
+                        <!-- Dynamically Generated Note Buttons -->
+                    </div>
+                </div>
+
+                <!-- Arpeggio Selector Menu -->
+                <div class="lg:col-span-8 bg-studio-800 border border-studio-700 rounded-2xl p-4 shadow-xl flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider">2. Choose Arpeggio (21 Essential Types)</span>
+                        <span id="category-badge" class="text-xs font-mono px-2 py-0.5 rounded-full bg-neon-purple/20 text-neon-purple border border-neon-purple/30">Basic Triad</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-medium">
+                        <!-- Category 1: Basic Triads (4) -->
+                        <div class="space-y-1">
+                            <span class="text-[10px] text-slate-400 font-mono block px-1">TRIADS (4)</span>
+                            <div class="space-y-1" id="cat-triads"></div>
+                        </div>
+                        <!-- Category 2: 7th Chords (7) -->
+                        <div class="space-y-1">
+                            <span class="text-[10px] text-slate-400 font-mono block px-1">7TH CHORDS (7)</span>
+                            <div class="space-y-1" id="cat-sevenths"></div>
+                        </div>
+                        <!-- Category 3: Extended/Altered (6) -->
+                        <div class="space-y-1">
+                            <span class="text-[10px] text-slate-400 font-mono block px-1">EXTENDED & ALT (6)</span>
+                            <div class="space-y-1" id="cat-extended"></div>
+                        </div>
+                        <!-- Category 4: Substitutions & Exotic (4) -->
+                        <div class="space-y-1">
+                            <span class="text-[10px] text-slate-400 font-mono block px-1">SOLO EXOTICS (4)</span>
+                            <div class="space-y-1" id="cat-exotic"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VISUALIZATION CONTAINER (FRETBOARD / PIANO SWITCH) -->
+            <div class="bg-studio-800 border border-studio-700 rounded-2xl p-4 sm:p-5 shadow-2xl space-y-4">
+                
+                <!-- Display Header & Controls -->
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-studio-700 pb-3">
+                    <div class="flex items-center space-x-3">
+                        <h2 id="arpeggio-title" class="text-xl sm:text-2xl font-bold text-white tracking-tight">C Major Triad</h2>
+                        <span id="arpeggio-formula-badge" class="font-mono text-xs px-2.5 py-1 rounded-md bg-studio-900 border border-studio-600 text-neon-amber font-semibold">1 - 3 - 5</span>
+                    </div>
+
+                    <!-- Toggle View & Settings Controls -->
+                    <div class="flex items-center space-x-3">
+                        <!-- Instrument Toggle -->
+                        <div class="flex bg-studio-900 p-1 rounded-lg border border-studio-700 text-xs font-medium">
+                            <button id="view-guitar-btn" onclick="setInstrument('guitar')" class="px-3 py-1 rounded-md bg-studio-700 text-white flex items-center space-x-1.5 transition">
+                                <i class="fa-solid fa-guitar text-neon-cyan"></i>
+                                <span>Guitar</span>
+                            </button>
+                            <button id="view-piano-btn" onclick="setInstrument('piano')" class="px-3 py-1 rounded-md text-slate-400 hover:text-white flex items-center space-x-1.5 transition">
+                                <i class="fa-solid fa-keyboard text-neon-amber"></i>
+                                <span>Piano</span>
+                            </button>
+                        </div>
+
+                        <!-- Guitar Tuning Selector (Only visible for guitar) -->
+                        <div id="tuning-selector-wrap" class="flex items-center space-x-2">
+                            <span class="text-xs text-slate-400 font-mono hidden sm:inline">Tuning:</span>
+                            <select id="tuning-select" onchange="changeTuning()" class="bg-studio-900 border border-studio-700 text-xs text-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-neon-cyan font-mono">
+                                <option value="E_STD">Standard (E A D G B E)</option>
+                                <option value="DROP_D">Drop D (D A D G B E)</option>
+                                <option value="HALF_STEP">Eb Standard (Eb Ab Db Gb Bb Eb)</option>
+                                <option value="DADGAD">DADGAD</option>
+                            </select>
+                        </div>
+
+                        <!-- Display Labels Switch -->
+                        <button onclick="toggleNoteLabels()" id="label-toggle-btn" class="text-xs bg-studio-900 hover:bg-studio-700 text-slate-300 border border-studio-700 px-2.5 py-1.5 rounded-lg flex items-center space-x-1 font-mono transition">
+                            <i class="fa-solid fa-tags text-neon-purple"></i>
+                            <span id="label-toggle-text">Show: Degrees</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- INSTRUMENT DISPLAY CANVAS/RENDER AREA -->
+                <div class="relative min-h-[220px] flex flex-col justify-center items-center overflow-x-auto py-2">
+                    
+                    <!-- GUITAR FRETBOARD VIEW -->
+                    <div id="guitar-view" class="w-full min-w-[760px] select-none">
+                        <div class="fretboard-container relative rounded-xl p-3 border border-amber-950/40">
+                            <!-- Fretboard HTML constructed dynamically -->
+                            <div id="fretboard-grid" class="relative"></div>
+                        </div>
+                        <!-- Fret Markers / Numbers -->
+                        <div class="flex justify-between px-6 mt-2 text-[11px] font-mono text-slate-500 font-bold">
+                            <span>NUT</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+                        </div>
+                    </div>
+
+                    <!-- PIANO KEYBOARD VIEW (Hidden by default or toggled) -->
+                    <div id="piano-view" class="w-full min-w-[650px] hidden select-none flex justify-center py-4">
+                        <div id="piano-keys-container" class="relative flex h-44 p-3 bg-studio-900 rounded-xl border border-studio-700 shadow-2xl">
+                            <!-- Dynamic Piano Keys Rendered Here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEGEND & COLOR CODE -->
+                <div class="flex flex-wrap items-center justify-between text-xs border-t border-studio-700/60 pt-3 text-slate-400 gap-2">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-1.5">
+                            <span class="w-3.5 h-3.5 rounded-full bg-neon-cyan inline-block shadow-sm"></span>
+                            <span>Root Note (1)</span>
+                        </div>
+                        <div class="flex items-center space-x-1.5">
+                            <span class="w-3.5 h-3.5 rounded-full bg-neon-amber inline-block shadow-sm"></span>
+                            <span>Chord Tone (3rd, 5th, etc.)</span>
+                        </div>
+                        <div class="flex items-center space-x-1.5">
+                            <span class="w-3.5 h-3.5 rounded-full bg-neon-purple inline-block shadow-sm"></span>
+                            <span>Extensions / Alterations</span>
+                        </div>
+                    </div>
+                    <div class="font-mono text-[11px] text-slate-500">
+                        * Click notes on fretboard/keyboard to hear sound
+                    </div>
+                </div>
+            </div>
+
+            <!-- AUDIO SYNTHESIZER & THEORY CONTEXT GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- AUDIO CONTROLLER & SYNTHESIZER -->
+                <div class="lg:col-span-5 bg-studio-800 border border-studio-700 rounded-2xl p-5 shadow-xl flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between border-b border-studio-700 pb-3">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-sliders text-neon-cyan"></i>
+                            <h3 class="font-bold text-sm text-white uppercase tracking-wider">Audio Synthesizer Engine</h3>
+                        </div>
+                        <span id="audio-status" class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Ready</span>
+                    </div>
+
+                    <!-- Playback Controls -->
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="playArpeggioAudio('asc')" class="bg-studio-700 hover:bg-studio-600 text-white p-3 rounded-xl border border-studio-600 font-semibold text-xs flex flex-col items-center justify-center space-y-1 transition active:scale-95 shadow-md">
+                            <i class="fa-solid fa-arrow-trend-up text-neon-cyan text-base"></i>
+                            <span>Ascending</span>
+                        </button>
+                        <button onclick="playArpeggioAudio('desc')" class="bg-studio-700 hover:bg-studio-600 text-white p-3 rounded-xl border border-studio-600 font-semibold text-xs flex flex-col items-center justify-center space-y-1 transition active:scale-95 shadow-md">
+                            <i class="fa-solid fa-arrow-trend-down text-neon-amber text-base"></i>
+                            <span>Descending</span>
+                        </button>
+                        <button onclick="playArpeggioAudio('chord')" class="bg-studio-700 hover:bg-studio-600 text-white p-3 rounded-xl border border-studio-600 font-semibold text-xs flex flex-col items-center justify-center space-y-1 transition active:scale-95 shadow-md">
+                            <i class="fa-solid fa-layer-group text-neon-purple text-base"></i>
+                            <span>Strum Chord</span>
+                        </button>
+                    </div>
+
+                    <!-- Tempo & Synth Controls -->
+                    <div class="space-y-3 bg-studio-900/60 p-3 rounded-xl border border-studio-700/60 text-xs">
+                        <!-- BPM Slider -->
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-400 font-mono">Tempo / Speed:</span>
+                            <div class="flex items-center space-x-3 w-1/2">
+                                <input type="range" id="bpm-slider" min="60" max="240" value="120" oninput="updateBpm(this.value)" class="w-full accent-neon-cyan bg-studio-700 rounded-lg cursor-pointer h-1.5">
+                                <span id="bpm-display" class="font-mono text-neon-cyan font-bold w-12 text-right">120 BPM</span>
+                            </div>
+                        </div>
+
+                        <!-- Waveform Picker -->
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-400 font-mono">Oscillator Sound:</span>
+                            <div class="flex space-x-1 bg-studio-800 p-1 rounded-lg border border-studio-700">
+                                <button onclick="setWaveform('triangle')" id="wave-triangle" class="wave-btn px-2 py-1 rounded text-[10px] bg-studio-600 text-white">Triangle</button>
+                                <button onclick="setWaveform('sawtooth')" id="wave-sawtooth" class="wave-btn px-2 py-1 rounded text-[10px] text-slate-400 hover:text-white">Sawtooth</button>
+                                <button onclick="setWaveform('sine')" id="wave-sine" class="wave-btn px-2 py-1 rounded text-[10px] text-slate-400 hover:text-white">Sine</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- THEORY & SOLOING APPLICATION GUIDE -->
+                <div class="lg:col-span-7 bg-studio-800 border border-studio-700 rounded-2xl p-5 shadow-xl flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between border-b border-studio-700 pb-3">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-lightbulb text-neon-amber"></i>
+                            <h3 class="font-bold text-sm text-white uppercase tracking-wider">Soloing Application & Context</h3>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">Pro Tip Guide</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <!-- Fits Over Chords -->
+                        <div class="bg-studio-900/80 p-3.5 rounded-xl border border-studio-700/60">
+                            <span class="text-xs font-mono font-bold text-neon-cyan uppercase tracking-wider block mb-1">
+                                <i class="fa-solid fa-circle-check mr-1.5"></i>Fits Directly Over Chords:
+                            </span>
+                            <p id="fits-over-text" class="text-sm text-slate-200 font-medium">C, Cmaj7, C6, Am7 (as 3rd-7th overlay)</p>
+                        </div>
+
+                        <!-- Substitution Trick / Secret Weapon -->
+                        <div class="bg-studio-900/80 p-3.5 rounded-xl border border-studio-700/60">
+                            <span class="text-xs font-mono font-bold text-neon-amber uppercase tracking-wider block mb-1">
+                                <i class="fa-solid fa-fire mr-1.5"></i>Over-The-Chord Substitution Trick:
+                            </span>
+                            <p id="sub-trick-text" class="text-sm text-slate-300">Play over A minor to outline Am7, or play over F Major 7 to highlight 3, 5, 7, 9 intervals.</p>
+                        </div>
+                    </div>
+
+                    <!-- Formula breakdown bar -->
+                    <div class="flex items-center justify-between bg-studio-700/40 px-4 py-2.5 rounded-xl border border-studio-700 text-xs">
+                        <span class="text-slate-400 font-mono">Notes in Key of <span id="formula-key-name">C</span>:</span>
+                        <div id="arpeggio-notes-list" class="flex space-x-2 font-mono font-bold text-white">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: SOLO SUBSTITUTIONS MATRIX GUIDE -->
+        <section id="tab-matrix" class="hidden space-y-6">
+            <div class="bg-studio-800 border border-studio-700 rounded-2xl p-6 shadow-xl space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-studio-700 pb-4 gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-white">The Soloist's Substitution Matrix</h2>
+                        <p class="text-xs text-slate-400">Superimpose arpeggios over underlying backing chords to unlock advanced colors (9ths, 11ths, 13ths, and alterations).</p>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-studio-900 p-1.5 rounded-xl border border-studio-700">
+                        <span class="text-xs text-slate-400 font-mono px-2">Filter Category:</span>
+                        <button onclick="filterMatrix('all')" class="matrix-filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-studio-700 text-white">All (21)</button>
+                        <button onclick="filterMatrix('dominant')" class="matrix-filter-btn px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white">Dominant Secrets</button>
+                        <button onclick="filterMatrix('minor')" class="matrix-filter-btn px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white">Minor & Jazz</button>
+                    </div>
+                </div>
+
+                <!-- MATRIX TABLE / GRID -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="substitution-cards-container">
+                    <!-- Cards injected dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: INTERACTIVE TRAINER & QUIZ MODE -->
+        <section id="tab-quiz" class="hidden space-y-6">
+            <div class="max-w-3xl mx-auto bg-studio-800 border border-studio-700 rounded-2xl p-6 shadow-2xl space-y-6">
+                
+                <!-- Quiz Header & Scoreboard -->
+                <div class="flex items-center justify-between border-b border-studio-700 pb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-neon-purple/20 border border-neon-purple/40 flex items-center justify-center text-neon-purple font-bold">
+                            <i class="fa-solid fa-brain text-lg"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-lg text-white">Arpeggio & Substitution Quiz</h2>
+                            <p class="text-xs text-slate-400">Test your chord formula knowledge and soloing applications</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4 bg-studio-900 px-4 py-2 rounded-xl border border-studio-700 font-mono">
+                        <div class="text-center">
+                            <span class="text-[10px] text-slate-500 uppercase block">Score</span>
+                            <span id="quiz-score" class="text-sm font-bold text-neon-cyan">0</span>
+                        </div>
+                        <div class="h-6 w-px bg-studio-700"></div>
+                        <div class="text-center">
+                            <span class="text-[10px] text-slate-500 uppercase block">Streak</span>
+                            <span id="quiz-streak" class="text-sm font-bold text-neon-amber">0 🔥</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question Card -->
+                <div id="quiz-card" class="bg-studio-900/90 border border-studio-700 p-6 rounded-xl space-y-6 relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span id="quiz-category-tag" class="text-xs font-mono font-bold px-2.5 py-1 rounded bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20">
+                            FORMULA QUIZ
+                        </span>
+                        <span class="text-xs font-mono text-slate-500">Question <span id="quiz-q-num">1</span></span>
+                    </div>
+
+                    <h3 id="quiz-question-text" class="text-base sm:text-lg font-semibold text-white leading-relaxed">
+                        What interval formula creates a Minor 7th Flat 5 (Half-Diminished) arpeggio?
+                    </h3>
+
+                    <!-- Choice Options -->
+                    <div id="quiz-options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                        <!-- Options injected dynamically -->
+                    </div>
+
+                    <!-- Feedback Banner -->
+                    <div id="quiz-feedback" class="hidden p-3.5 rounded-xl text-xs font-mono font-semibold flex items-center justify-between">
+                        <!-- Dynamic feedback -->
+                    </div>
+                </div>
+
+                <!-- Next Question & Restart Controls -->
+                <div class="flex justify-between items-center">
+                    <button onclick="resetQuiz()" class="text-xs text-slate-400 hover:text-white font-mono flex items-center space-x-1">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Reset Stats</span>
+                    </button>
+                    <button id="next-q-btn" onclick="nextQuizQuestion()" class="bg-gradient-to-r from-neon-cyan to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-studio-900 font-bold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg flex items-center space-x-2">
+                        <span>Next Question</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-studio-800 bg-studio-900/50 py-4 mt-auto text-center text-xs text-slate-500 font-mono">
+        <p>21 Arpeggios to Build Better Solos &bull; Interactive Music Theory Toolkit</p>
+    </footer>
+
+    <!-- AUDIO ENGINE & THEORY LOGIC SCRIPT -->
+    <script>
+        // ==========================================
+        // 1. MUSIC THEORY DATA (21 ARPEGGIOS COMPLETE)
+        // ==========================================
+        const CHROMATIC_NOTES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+        const NOTE_ALIASES = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#' };
+        
+        // 21 Arpeggio Definitions categorized
+        const ARPEGGIOS_DATA = [
+            // --- CATEGORY 1: BASIC TRIADS (4) ---
+            {
+                id: 'maj_triad',
+                name: 'Major Triad',
+                category: 'triads',
+                catLabel: 'Basic Triad',
+                formula: ['1', '3', '5'],
+                semitones: [0, 4, 7],
+                fitsOver: 'Major chords (C, Cmaj7, C6). Foundation for solid chord-tone soloing.',
+                proTip: 'Play over relative minor (e.g., C Major triad over A minor) to emphasize the 3rd, 5th, and b7 of Am7.'
+            },
+            {
+                id: 'min_triad',
+                name: 'Minor Triad',
+                category: 'triads',
+                catLabel: 'Basic Triad',
+                formula: ['1', 'b3', '5'],
+                semitones: [0, 3, 7],
+                fitsOver: 'Minor chords (Cm, Cm7, Cm6). Essential minor key building block.',
+                proTip: 'Play a minor triad starting on the 5th of a Major 7 chord (e.g., G minor over Cmaj7) for a smooth 9th extension.'
+            },
+            {
+                id: 'dim_triad',
+                name: 'Diminished Triad',
+                category: 'triads',
+                catLabel: 'Basic Triad',
+                formula: ['1', 'b3', 'b5'],
+                semitones: [0, 3, 6],
+                fitsOver: 'Diminished chords & Dominant 7th (play from the 3rd of Dom7).',
+                proTip: 'Play B diminished triad over G7 to get a rootless G7 sound (3rd, 5th, b7).'
+            },
+            {
+                id: 'aug_triad',
+                name: 'Augmented Triad',
+                category: 'triads',
+                catLabel: 'Basic Triad',
+                formula: ['1', '3', '#5'],
+                semitones: [0, 4, 8],
+                fitsOver: 'Augmented chords, Dominant 7#5, and altered blues lines.',
+                proTip: 'Symmetrical arpeggio (stacked major 3rds). Play over Dom7 chords for immediate tension.'
+            },
+
+            // --- CATEGORY 2: SEVENTH CHORDS (7) ---
+            {
+                id: 'maj7',
+                name: 'Major 7th',
+                category: 'sevenths',
+                catLabel: '7th Chord',
+                formula: ['1', '3', '5', '7'],
+                semitones: [0, 4, 7, 11],
+                fitsOver: 'Cmaj7, Cmaj9, I and IV major chords in jazz/pop.',
+                proTip: 'Play Em7 arpeggio over Cmaj7 to outline the 3rd, 5th, 7th, and 9th (Rootless Cmaj9).'
+            },
+            {
+                id: 'dom7',
+                name: 'Dominant 7th',
+                category: 'sevenths',
+                catLabel: '7th Chord',
+                formula: ['1', '3', '5', 'b7'],
+                semitones: [0, 4, 7, 10],
+                fitsOver: 'C7, Mixolydian vamps, Blues V7 chords.',
+                proTip: 'Play a Major Pentatonic arpeggio or Gm7 over C7 for bluesy soul jazz colors.'
+            },
+            {
+                id: 'min7',
+                name: 'Minor 7th',
+                category: 'sevenths',
+                catLabel: '7th Chord',
+                formula: ['1', 'b3', '5', 'b7'],
+                semitones: [0, 3, 7, 10],
+                fitsOver: 'Cm7, ii-V-I progressions (ii chord), Dorian vamps.',
+                proTip: 'Play Eb Major 7th over Cm7 to hit the b3, 5, b7, and 9 for a modern jazz vibe.'
+            },
+            {
+                id: 'm7b5',
+                name: 'Half-Diminished (m7b5)',
+                category: 'sevenths',
+                catLabel: '7th Chord',
+                formula: ['1', 'b3', 'b5', 'b7'],
+                semitones: [0, 3, 6, 10],
+                fitsOver: 'Cm7b5, minor ii-V-I progressions (ii chord).',
+                proTip: 'Play Bm7b5 over G7! Outlines 3, 5, b7, 9 of G7—the single most useful jazz sub.'
+            },
+            {
+                id: 'dim7',
+                name: 'Diminished 7th',
+                category: 'sevenths',
+                catLabel: '7th Chord',
+                formula: ['1', 'b3', 'b5', 'bb7'],
+                semitones: [0, 3, 6, 9],
+                fitsOver: 'Cdim7, passing chords, and Dominant 7b9 chords.',
+                proTip: 'Fully symmetrical! Shift this shape up/down by 3 frets (minor 3rds) endlessly over V7b9.'
+            },
+            {
+                id: 'min_maj7',
+                name: 'Minor-Major 7th',
+                category: 'sevenths',
+                catLabel: '7th Chord',
+                formula: ['1', 'b3', '5', '7'],
+                semitones: [0, 3, 7, 11],
+                fitsOver: 'Cm(maj7), Melodic Minor tonic chord, James Bond/Noir vibes.',
+                proTip: 'Great for creating suspense over tonic minor chords.'
+            },
+            {
+                id: 'aug_maj7',
+                name: 'Augmented Major 7th',
+                category: 'sevenths',
+                catLabel: '7th Chord',
+                formula: ['1', '3', '#5', '7'],
+                semitones: [0, 4, 8, 11],
+                fitsOver: 'Cmaj7#5, Lydian Augmented mode contexts.',
+                proTip: 'Use over Major 7th chords when you want a dreamy, modern floating sound.'
+            },
+
+            // --- CATEGORY 3: EXTENDED & ALTERED CHORDS (6) ---
+            {
+                id: 'dom9',
+                name: 'Dominant 9th',
+                category: 'extended',
+                catLabel: 'Extended/Alt',
+                formula: ['1', '3', '5', 'b7', '9'],
+                semitones: [0, 4, 7, 10, 14],
+                fitsOver: 'C9, Funk V7 chords, Blues.',
+                proTip: 'Play Em7b5 arpeggio starting from the 3rd of C9 to outline 3-5-b7-9 seamlessly.'
+            },
+            {
+                id: 'maj9',
+                name: 'Major 9th',
+                category: 'extended',
+                catLabel: 'Extended/Alt',
+                formula: ['1', '3', '5', '7', '9'],
+                semitones: [0, 4, 7, 11, 14],
+                fitsOver: 'Cmaj9, Neo-Soul, Smooth Jazz I chords.',
+                proTip: 'Play G Major triad or Gmaj7 over C to outline pristine lush extensions.'
+            },
+            {
+                id: 'min9',
+                name: 'Minor 9th',
+                category: 'extended',
+                catLabel: 'Extended/Alt',
+                formula: ['1', 'b3', '5', 'b7', '9'],
+                semitones: [0, 3, 7, 10, 14],
+                fitsOver: 'Cm9, R&B minor grooves.',
+                proTip: 'Superimpose Ebmaj7 over Cm9 to emphasize the smooth upper structure.'
+            },
+            {
+                id: 'dom_b9',
+                name: '7b9 (Dominant Flat 9)',
+                category: 'extended',
+                catLabel: 'Extended/Alt',
+                formula: ['1', '3', '5', 'b7', 'b9'],
+                semitones: [0, 4, 7, 10, 13],
+                fitsOver: 'C7b9 resolving to F minor or F Major.',
+                proTip: 'Play a Diminished 7th arpeggio starting 1 half-step above the root (Db dim7 over C7).'
+            },
+            {
+                id: 'dom_sharp9',
+                name: '7#9 (Hendrix / Altered)',
+                category: 'extended',
+                catLabel: 'Extended/Alt',
+                formula: ['1', '3', '5', 'b7', '#9'],
+                semitones: [0, 4, 7, 10, 15],
+                fitsOver: 'C7#9, Purple Haze chord, Rock/Blues V7.',
+                proTip: 'Play an Eb Major triad over C7! The Eb note acts as the #9 (D#) for instant blues-rock grit.'
+            },
+            {
+                id: 'dom_sharp11',
+                name: '7#11 (Lydian Dominant)',
+                category: 'extended',
+                catLabel: 'Extended/Alt',
+                formula: ['1', '3', '5', 'b7', '#11'],
+                semitones: [0, 4, 7, 10, 18],
+                fitsOver: 'C7#11, II7 dominant substitute chords.',
+                proTip: 'Play a D Major triad over C7! Gives you D (9th), F# (#11), and A (13th) over C7.'
+            },
+
+            // --- CATEGORY 4: SUBSTITUTION & EXOTIC SOLOING (4) ---
+            {
+                id: 'maj_pent_arp',
+                name: 'Major Pentatonic Arp',
+                category: 'exotic',
+                catLabel: 'Solo Exotic',
+                formula: ['1', '2', '3', '5'],
+                semitones: [0, 2, 4, 7],
+                fitsOver: 'Major, Dominant, and Minor chords (with sub).',
+                proTip: 'Play F Major Pentatonic arpeggio over Dm7 for a smooth modal flow without harsh avoids.'
+            },
+            {
+                id: 'min_pent_arp',
+                name: 'Minor Pentatonic Arp',
+                category: 'exotic',
+                catLabel: 'Solo Exotic',
+                formula: ['1', 'b3', '4', '5'],
+                semitones: [0, 3, 5, 7],
+                fitsOver: 'Blues, Rock, Minor vamps.',
+                proTip: 'Play Bm pentatonic arpeggio over E7 for an instant country/blues hybrid sound.'
+            },
+            {
+                id: 'sus4_arp',
+                name: '7sus4 Arpeggio',
+                category: 'exotic',
+                catLabel: 'Solo Exotic',
+                formula: ['1', '4', '5', 'b7'],
+                semitones: [0, 5, 7, 10],
+                fitsOver: 'Csus4, C7sus4, Modern Fusion suspended vamps.',
+                proTip: 'Play Bb Major triad over C root for a rich 7sus4 modal texture.'
+            },
+            {
+                id: 'quartal_arp',
+                name: 'Quartal Stacked 4ths',
+                category: 'exotic',
+                catLabel: 'Solo Exotic',
+                formula: ['1', '4', 'b7', 'b3'],
+                semitones: [0, 5, 10, 15],
+                fitsOver: 'Modern Jazz, McCoy Tyner style quartal comping & soloing.',
+                proTip: 'Stack pure 4ths for an open, ambiguous modern solo sound that floats over chords.'
+            }
+        ];
+
+        // Guitar Tunings Definition
+        const GUITAR_TUNINGS = {
+            'E_STD': ['E2', 'A2', 'D3', 'G3', 'B3', 'E4'],
+            'DROP_D': ['D2', 'A2', 'D3', 'G3', 'B3', 'E4'],
+            'HALF_STEP': ['D#2', 'G#2', 'C#3', 'F#3', 'A#3', 'D#4'],
+            'DADGAD': ['D2', 'A2', 'D3', 'G3', 'A3', 'D4']
+        };
+
+        // ==========================================
+        // 2. STATE MANAGEMENT
+        // ==========================================
+        let currentState = {
+            root: 'C',
+            arpeggioId: 'maj_triad',
+            instrument: 'guitar', // 'guitar' or 'piano'
+            tuning: 'E_STD',
+            showDegrees: true, // true = degree labels, false = note names
+            bpm: 120,
+            waveform: 'triangle'
+        };
+
+        let currentArpeggioObj = ARPEGGIOS_DATA[0];
+
+        // ==========================================
+        // 3. INITIALIZATION & UI BUILDERS
+        // ==========================================
+        window.onload = function() {
+            buildRootSelector();
+            buildArpeggioMenu();
+            renderVisualizer();
+            updateTheoryPanel();
+            buildSubstitutionMatrix();
+            initQuiz();
+        };
+
+        function buildRootSelector() {
+            const roots = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+            const container = document.getElementById('root-buttons-container');
+            container.innerHTML = '';
+
+            roots.forEach(note => {
+                const btn = document.createElement('button');
+                btn.className = `root-btn py-1.5 rounded-lg text-xs font-mono font-bold border transition ${
+                    note === currentState.root 
+                        ? 'bg-neon-cyan text-studio-900 border-neon-cyan shadow-md glow-cyan' 
+                        : 'bg-studio-900 text-slate-300 border-studio-700 hover:border-slate-500'
+                }`;
+                btn.innerText = note;
+                btn.onclick = () => selectRoot(note);
+                container.appendChild(btn);
+            });
+        }
+
+        function buildArpeggioMenu() {
+            const categories = {
+                'triads': document.getElementById('cat-triads'),
+                'sevenths': document.getElementById('cat-sevenths'),
+                'extended': document.getElementById('cat-extended'),
+                'exotic': document.getElementById('cat-exotic')
+            };
+
+            // Clear
+            Object.values(categories).forEach(c => c.innerHTML = '');
+
+            ARPEGGIOS_DATA.forEach(arp => {
+                const btn = document.createElement('button');
+                const isActive = arp.id === currentState.arpeggioId;
+                btn.className = `arp-menu-btn w-full text-left px-2 py-1 rounded-md text-[11px] font-medium transition flex items-center justify-between ${
+                    isActive 
+                        ? 'bg-neon-purple text-white font-bold shadow-sm' 
+                        : 'bg-studio-900/80 text-slate-300 hover:bg-studio-700 hover:text-white border border-studio-700/50'
+                }`;
+                btn.innerHTML = `
+                    <span class="truncate">${arp.name}</span>
+                    ${isActive ? '<i class="fa-solid fa-check text-[10px]"></i>' : ''}
+                `;
+                btn.onclick = () => selectArpeggio(arp.id);
+                if (categories[arp.category]) {
+                    categories[arp.category].appendChild(btn);
+                }
+            });
+        }
+
+        function selectRoot(note) {
+            currentState.root = note;
+            document.getElementById('current-root-display').innerText = note;
+            document.getElementById('formula-key-name').innerText = note;
+            buildRootSelector();
+            renderVisualizer();
+            updateTheoryPanel();
+        }
+
+        function selectArpeggio(id) {
+            currentState.arpeggioId = id;
+            currentArpeggioObj = ARPEGGIOS_DATA.find(a => a.id === id);
+            buildArpeggioMenu();
+            renderVisualizer();
+            updateTheoryPanel();
+        }
+
+        function setInstrument(inst) {
+            currentState.instrument = inst;
+            const guitarBtn = document.getElementById('view-guitar-btn');
+            const pianoBtn = document.getElementById('view-piano-btn');
+            const guitarView = document.getElementById('guitar-view');
+            const pianoView = document.getElementById('piano-view');
+            const tuningWrap = document.getElementById('tuning-selector-wrap');
+
+            if (inst === 'guitar') {
+                guitarBtn.className = 'px-3 py-1 rounded-md bg-studio-700 text-white flex items-center space-x-1.5 transition';
+                pianoBtn.className = 'px-3 py-1 rounded-md text-slate-400 hover:text-white flex items-center space-x-1.5 transition';
+                guitarView.classList.remove('hidden');
+                pianoView.classList.add('hidden');
+                tuningWrap.classList.remove('hidden');
+            } else {
+                pianoBtn.className = 'px-3 py-1 rounded-md bg-studio-700 text-white flex items-center space-x-1.5 transition';
+                guitarBtn.className = 'px-3 py-1 rounded-md text-slate-400 hover:text-white flex items-center space-x-1.5 transition';
+                pianoView.classList.remove('hidden');
+                guitarView.classList.add('hidden');
+                tuningWrap.classList.add('hidden');
+            }
+            renderVisualizer();
+        }
+
+        function changeTuning() {
+            currentState.tuning = document.getElementById('tuning-select').value;
+            renderVisualizer();
+        }
+
+        function toggleNoteLabels() {
+            currentState.showDegrees = !currentState.showDegrees;
+            document.getElementById('label-toggle-text').innerText = currentState.showDegrees ? 'Show: Degrees' : 'Show: Notes';
+            renderVisualizer();
+        }
+
+        // ==========================================
+        // 4. MUSIC THEORY CALCULATIONS
+        // ==========================================
+        function getNotePitchIndex(noteName) {
+            const clean = noteName.replace(/[0-9]/g, '');
+            const normalized = NOTE_ALIASES[clean] || clean;
+            return CHROMATIC_NOTES.indexOf(normalized);
+        }
+
+        function getArpeggioPitchIndices(rootNote, semitoneIntervals) {
+            const rootIdx = CHROMATIC_NOTES.indexOf(NOTE_ALIASES[rootNote] || rootNote);
+            return semitoneIntervals.map(st => (rootIdx + st) % 12);
+        }
+
+        function getNoteDegreeLabel(noteIdx, rootIdx, semitoneIntervals, formulaArray) {
+            const diff = (noteIdx - rootIdx + 12) % 12;
+            const matchIndex = semitoneIntervals.findIndex(st => st % 12 === diff);
+            if (matchIndex !== -1) {
+                return formulaArray[matchIndex];
+            }
+            return '';
+        }
+
+        // ==========================================
+        // 5. INSTRUMENT VISUALIZER RENDERING
+        // ==========================================
+        function renderVisualizer() {
+            // Update Title Header
+            document.getElementById('arpeggio-title').innerText = `${currentState.root} ${currentArpeggioObj.name}`;
+            document.getElementById('arpeggio-formula-badge').innerText = currentArpeggioObj.formula.join(' - ');
+            document.getElementById('category-badge').innerText = currentArpeggioObj.catLabel;
+
+            if (currentState.instrument === 'guitar') {
+                renderGuitarFretboard();
+            } else {
+                renderPianoKeyboard();
+            }
+        }
+
+        function renderGuitarFretboard() {
+            const grid = document.getElementById('fretboard-grid');
+            grid.innerHTML = '';
+
+            const tuningNotes = GUITAR_TUNINGS[currentState.tuning];
+            const activePitchIndices = getArpeggioPitchIndices(currentState.root, currentArpeggioObj.semitones);
+            const rootPitchIdx = CHROMATIC_NOTES.indexOf(NOTE_ALIASES[currentState.root] || currentState.root);
+
+            // Render 6 strings (from High E to Low E)
+            const stringCount = 6;
+            const fretCount = 15;
+
+            for (let s = stringCount - 1; s >= 0; s--) {
+                const openStringNote = tuningNotes[s];
+                const stringRootPitch = getNotePitchIndex(openStringNote);
+
+                const stringRow = document.createElement('div');
+                stringRow.className = 'relative flex items-center h-7 my-1';
+
+                // String Line Visual
+                const stringLine = document.createElement('div');
+                const thickness = (stringCount - s) * 0.6 + 1; // thicker for lower strings
+                stringLine.className = `absolute left-0 right-0 top-1/2 -translate-y-1/2 z-0 ${s < 3 ? 'guitar-string' : 'guitar-string wound-string'}`;
+                stringLine.style.height = `${thickness}px`;
+                stringRow.appendChild(stringLine);
+
+                // Fret positions (0 = open, 1..15)
+                for (let f = 0; f <= fretCount; f++) {
+                    const currentPitchIdx = (stringRootPitch + f) % 12;
+                    const isArpeggioNote = activePitchIndices.includes(currentPitchIdx);
+
+                    const fretCell = document.createElement('div');
+                    fretCell.className = 'relative flex-1 h-full flex items-center justify-center z-10';
+
+                    // Fret Wire Line (except nut)
+                    if (f > 0) {
+                        const fretWire = document.createElement('div');
+                        fretWire.className = 'absolute right-0 top-0 bottom-0 w-1 fret-wire z-0';
+                        fretCell.appendChild(fretWire);
+                    } else {
+                        // Nut accent
+                        const nutWire = document.createElement('div');
+                        nutWire.className = 'absolute right-0 top-0 bottom-0 w-2 bg-amber-200/40 z-0';
+                        fretCell.appendChild(nutWire);
+                    }
+
+                    // Single / Double Fret Markers on string 3 (G string area)
+                    if (s === 2 && [3, 5, 7, 9, 12, 15].includes(f)) {
+                        const marker = document.createElement('div');
+                        if (f === 12) {
+                            marker.className = 'absolute w-2 h-2 rounded-full bg-slate-600/50 -translate-y-3';
+                            const marker2 = document.createElement('div');
+                            marker2.className = 'absolute w-2 h-2 rounded-full bg-slate-600/50 translate-y-3';
+                            fretCell.appendChild(marker2);
+                        } else {
+                            marker.className = 'absolute w-2.5 h-2.5 rounded-full bg-slate-600/40';
+                        }
+                        fretCell.appendChild(marker);
+                    }
+
+                    // If note belongs to current arpeggio
+                    if (isArpeggioNote) {
+                        const degreeLabel = getNoteDegreeLabel(currentPitchIdx, rootPitchIdx, currentArpeggioObj.semitones, currentArpeggioObj.formula);
+                        const isRoot = currentPitchIdx === rootPitchIdx;
+                        const isExtension = ['9', 'b9', '#9', '#11', '13', 'bb7'].includes(degreeLabel);
+
+                        const noteDot = document.createElement('button');
+                        
+                        let colorClasses = 'bg-neon-amber text-studio-900 shadow-md font-bold'; // default chord tone
+                        if (isRoot) {
+                            colorClasses = 'bg-neon-cyan text-studio-900 ring-2 ring-white font-black glow-cyan';
+                        } else if (isExtension) {
+                            colorClasses = 'bg-neon-purple text-white font-bold glow-purple';
+                        }
+
+                        noteDot.className = `w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-mono z-20 cursor-pointer transition transform hover:scale-125 ${colorClasses}`;
+                        noteDot.innerText = currentState.showDegrees ? degreeLabel : CHROMATIC_NOTES[currentPitchIdx];
+
+                        // Play audio on click
+                        const octave = Math.floor((stringRootPitch + f) / 12) + 2;
+                        const noteNameFull = CHROMATIC_NOTES[currentPitchIdx] + octave;
+                        noteDot.onclick = (e) => {
+                            e.stopPropagation();
+                            playSingleNoteByName(noteNameFull);
+                        };
+
+                        fretCell.appendChild(noteDot);
+                    }
+
+                    stringRow.appendChild(fretCell);
+                }
+
+                grid.appendChild(stringRow);
+            }
+        }
+
+        function renderPianoKeyboard() {
+            const container = document.getElementById('piano-keys-container');
+            container.innerHTML = '';
+
+            const activePitchIndices = getArpeggioPitchIndices(currentState.root, currentArpeggioObj.semitones);
+            const rootPitchIdx = CHROMATIC_NOTES.indexOf(NOTE_ALIASES[currentState.root] || currentState.root);
+
+            // Render 2 full octaves (24 keys starting from C3)
+            const totalWhiteKeys = 14;
+            const whiteKeyWidth = 42; // px
+
+            let whiteCount = 0;
+            for (let i = 0; i < 24; i++) {
+                const pitchIdx = i % 12;
+                const noteName = CHROMATIC_NOTES[pitchIdx];
+                const isBlack = noteName.includes('#');
+                const isArpeggioNote = activePitchIndices.includes(pitchIdx);
+
+                const degreeLabel = isArpeggioNote ? getNoteDegreeLabel(pitchIdx, rootPitchIdx, currentArpeggioObj.semitones, currentArpeggioObj.formula) : '';
+                const isRoot = pitchIdx === rootPitchIdx;
+                const isExtension = ['9', 'b9', '#9', '#11', '13'].includes(degreeLabel);
+
+                const keyBtn = document.createElement('div');
+
+                if (!isBlack) {
+                    keyBtn.className = `white-key relative flex flex-col justify-end items-center pb-2 cursor-pointer ${isArpeggioNote ? 'active' : ''}`;
+                    keyBtn.style.width = `${whiteKeyWidth}px`;
+                    keyBtn.style.height = '100%';
+
+                    if (isArpeggioNote) {
+                        const dot = document.createElement('div');
+                        let bg = isRoot ? 'bg-neon-cyan text-studio-900 font-black' : (isExtension ? 'bg-neon-purple text-white' : 'bg-neon-amber text-studio-900');
+                        dot.className = `w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-mono font-bold shadow ${bg}`;
+                        dot.innerText = currentState.showDegrees ? degreeLabel : noteName;
+                        keyBtn.appendChild(dot);
+                    }
+                    
+                    const octave = Math.floor(i / 12) + 3;
+                    keyBtn.onclick = () => playSingleNoteByName(noteName + octave);
+
+                    container.appendChild(keyBtn);
+                    whiteCount++;
+                } else {
+                    // Position black key absolute over previous white key
+                    const blackKey = document.createElement('div');
+                    blackKey.className = `black-key absolute flex flex-col justify-end items-center pb-2 cursor-pointer ${isArpeggioNote ? 'active' : ''}`;
+                    blackKey.style.width = `${whiteKeyWidth * 0.65}px`;
+                    blackKey.style.height = '60%';
+                    blackKey.style.left = `${(whiteCount * whiteKeyWidth) - (whiteKeyWidth * 0.325) + 12}px`;
+
+                    if (isArpeggioNote) {
+                        const dot = document.createElement('div');
+                        let bg = isRoot ? 'bg-neon-cyan text-studio-900 font-black' : (isExtension ? 'bg-neon-purple text-white' : 'bg-neon-amber text-studio-900');
+                        dot.className = `w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-mono font-bold shadow ${bg}`;
+                        dot.innerText = currentState.showDegrees ? degreeLabel : noteName;
+                        blackKey.appendChild(dot);
+                    }
+
+                    const octave = Math.floor(i / 12) + 3;
+                    blackKey.onclick = () => playSingleNoteByName(noteName + octave);
+
+                    container.appendChild(blackKey);
+                }
+            }
+        }
+
+        function updateTheoryPanel() {
+            document.getElementById('fits-over-text').innerText = currentArpeggioObj.fitsOver;
+            document.getElementById('sub-trick-text').innerText = currentArpeggioObj.proTip;
+
+            // Generate pitch note names list
+            const activePitchIndices = getArpeggioPitchIndices(currentState.root, currentArpeggioObj.semitones);
+            const notesListContainer = document.getElementById('arpeggio-notes-list');
+            notesListContainer.innerHTML = '';
+
+            activePitchIndices.forEach(idx => {
+                const badge = document.createElement('span');
+                badge.className = 'px-2 py-0.5 rounded bg-studio-900 border border-studio-600 text-neon-cyan';
+                badge.innerText = CHROMATIC_NOTES[idx];
+                notesListContainer.appendChild(badge);
+            });
+        }
+
+        // ==========================================
+        // 6. AUDIO SYNTHESIZER ENGINE (WEB AUDIO API)
+        // ==========================================
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function noteToFreq(noteName) {
+            // Note format: "C4", "F#3"
+            const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+            const octave = parseInt(noteName.slice(-1));
+            const keyName = noteName.slice(0, -1);
+            const normalized = NOTE_ALIASES[keyName] || keyName;
+            const keyIndex = notes.indexOf(normalized);
+
+            // A4 = 440 Hz (index 9 in octave 4)
+            const distance = (octave - 4) * 12 + (keyIndex - 9);
+            return 440 * Math.pow(2, distance / 12);
+        }
+
+        function playTone(freq, duration = 0.4, delay = 0) {
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = currentState.waveform;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime + delay);
+
+            gain.gain.setValueAtTime(0.01, audioCtx.currentTime + delay);
+            gain.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime + delay + 0.05);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + delay + duration);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start(audioCtx.currentTime + delay);
+            osc.stop(audioCtx.currentTime + delay + duration);
+        }
+
+        function playSingleNoteByName(noteName) {
+            const freq = noteToFreq(noteName);
+            playTone(freq, 0.5, 0);
+        }
+
+        function playArpeggioAudio(mode) {
+            initAudio();
+            const rootIdx = CHROMATIC_NOTES.indexOf(NOTE_ALIASES[currentState.root] || currentState.root);
+            const semitones = currentArpeggioObj.semitones;
+
+            // Generate note pitch list starting around octave 3
+            const freqs = semitones.map(st => {
+                const pitchIdx = (rootIdx + st) % 12;
+                const octave = 3 + Math.floor((rootIdx + st) / 12);
+                return noteToFreq(CHROMATIC_NOTES[pitchIdx] + octave);
+            });
+
+            const stepTime = 60 / currentState.bpm; // time per note based on BPM
+
+            if (mode === 'asc') {
+                freqs.forEach((freq, idx) => {
+                    playTone(freq, stepTime * 1.2, idx * stepTime);
+                });
+            } else if (mode === 'desc') {
+                const reversed = [...freqs].reverse();
+                reversed.forEach((freq, idx) => {
+                    playTone(freq, stepTime * 1.2, idx * stepTime);
+                });
+            } else if (mode === 'chord') {
+                freqs.forEach((freq, idx) => {
+                    playTone(freq, 1.5, idx * 0.06); // quick strum
+                });
+            }
+        }
+
+        function updateBpm(val) {
+            currentState.bpm = parseInt(val);
+            document.getElementById('bpm-display').innerText = `${val} BPM`;
+        }
+
+        function setWaveform(type) {
+            currentState.waveform = type;
+            document.querySelectorAll('.wave-btn').forEach(btn => {
+                btn.className = 'wave-btn px-2 py-1 rounded text-[10px] text-slate-400 hover:text-white';
+            });
+            document.getElementById(`wave-${type}`).className = 'wave-btn px-2 py-1 rounded text-[10px] bg-studio-600 text-white font-bold';
+        }
+
+        // ==========================================
+        // 7. TAB NAVIGATION & MATRIX BUILDER
+        // ==========================================
+        function switchTab(tabId) {
+            document.getElementById('tab-explorer').classList.add('hidden');
+            document.getElementById('tab-matrix').classList.add('hidden');
+            document.getElementById('tab-quiz').classList.add('hidden');
+
+            document.getElementById('nav-fretboard-btn').className = 'tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition text-slate-400 hover:text-white';
+            document.getElementById('nav-matrix-btn').className = 'tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition text-slate-400 hover:text-white';
+            document.getElementById('nav-quiz-btn').className = 'tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition text-slate-400 hover:text-white';
+
+            if (tabId === 'explorer') {
+                document.getElementById('tab-explorer').classList.remove('hidden');
+                document.getElementById('nav-fretboard-btn').className = 'tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition bg-studio-700 text-white shadow-sm';
+            } else if (tabId === 'matrix') {
+                document.getElementById('tab-matrix').classList.remove('hidden');
+                document.getElementById('nav-matrix-btn').className = 'tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition bg-studio-700 text-white shadow-sm';
+            } else if (tabId === 'quiz') {
+                document.getElementById('tab-quiz').classList.remove('hidden');
+                document.getElementById('nav-quiz-btn').className = 'tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition bg-studio-700 text-white shadow-sm';
+            }
+        }
+
+        function buildSubstitutionMatrix(filter = 'all') {
+            const container = document.getElementById('substitution-cards-container');
+            container.innerHTML = '';
+
+            ARPEGGIOS_DATA.forEach(arp => {
+                if (filter === 'dominant' && !arp.name.includes('7') && !arp.name.includes('9') && !arp.id.includes('dom')) return;
+                if (filter === 'minor' && !arp.name.toLowerCase().includes('minor') && !arp.id.includes('m7')) return;
+
+                const card = document.createElement('div');
+                card.className = 'bg-studio-900/90 border border-studio-700 p-4 rounded-xl space-y-3 hover:border-neon-cyan/50 transition duration-200 flex flex-col justify-between';
+                card.innerHTML = `
+                    <div class="space-y-1">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono font-bold text-neon-cyan">${arp.catLabel}</span>
+                            <span class="text-[10px] font-mono text-slate-400 px-2 py-0.5 rounded bg-studio-800">${arp.formula.join(' - ')}</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">${arp.name}</h4>
+                    </div>
+                    <div class="space-y-2 text-xs">
+                        <div class="bg-studio-800 p-2.5 rounded-lg border border-studio-700">
+                            <span class="text-neon-amber font-mono font-semibold block text-[10px] uppercase">Best Overlay Match:</span>
+                            <p class="text-slate-300 font-medium">${arp.fitsOver}</p>
+                        </div>
+                        <p class="text-slate-400 italic text-[11px]"><i class="fa-solid fa-lightbulb text-neon-purple mr-1"></i> ${arp.proTip}</p>
+                    </div>
+                    <button onclick="selectArpeggioFromMatrix('${arp.id}')" class="w-full mt-2 py-1.5 rounded-lg bg-studio-700 hover:bg-neon-cyan hover:text-studio-900 text-white font-mono text-xs font-bold transition">
+                        View On Visualizer &rarr;
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterMatrix(type) {
+            document.querySelectorAll('.matrix-filter-btn').forEach(btn => {
+                btn.className = 'matrix-filter-btn px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white';
+            });
+            event.target.className = 'matrix-filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-studio-700 text-white';
+            buildSubstitutionMatrix(type);
+        }
+
+        function selectArpeggioFromMatrix(id) {
+            selectArpeggio(id);
+            switchTab('explorer');
+        }
+
+        // ==========================================
+        // 8. INTERACTIVE QUIZ ENGINE
+        // ==========================================
+        const QUIZ_QUESTIONS = [
+            {
+                category: 'FORMULA QUIZ',
+                question: 'What interval formula creates a Minor 7th Flat 5 (Half-Diminished) arpeggio?',
+                options: ['1 - b3 - b5 - b7', '1 - b3 - 5 - b7', '1 - 3 - b5 - b7', '1 - b3 - b5 - bb7'],
+                correct: 0,
+                explanation: 'Correct! m7b5 consists of Root, Minor 3rd, Flat 5th, and Minor 7th.'
+            },
+            {
+                category: 'SUBSTITUTION SECRET',
+                question: 'Which arpeggio can you play over a G7 chord to outline a rootless G9 sound (3-5-b7-9)?',
+                options: ['C Major Triad', 'Bm7b5 Arpeggio', 'Eb Major 7th', 'A Minor Triad'],
+                correct: 1,
+                explanation: 'Spot on! Bm7b5 contains notes B-D-F-A, which are the 3rd, 5th, b7, and 9th of G7!'
+            },
+            {
+                category: 'ALTERED TONES',
+                question: 'To get a 7#9 (Hendrix chord sound) over C7, which triad arpeggio can you play as a substitute?',
+                options: ['Eb Major Triad', 'F Minor Triad', 'D Major Triad', 'G Minor Triad'],
+                correct: 0,
+                explanation: 'Awesome! Playing an Eb Major triad over C7 adds the Eb note, which acts as the spicy #9 extension!'
+            },
+            {
+                category: 'FORMULA QUIZ',
+                question: 'What is the exact interval formula for a Dominant 7th arpeggio?',
+                options: ['1 - 3 - 5 - 7', '1 - 3 - 5 - b7', '1 - b3 - 5 - b7', '1 - 3 - #5 - b7'],
+                correct: 1,
+                explanation: 'Right! A Dominant 7th arpeggio is built with Root, Major 3rd, Perfect 5th, and Flat 7th.'
+            },
+            {
+                category: 'JAZZ SUBSTITUTION',
+                question: 'Playing an Em7 arpeggio over a Cmaj7 chord yields which lush chord tone sound?',
+                options: ['Rootless Cmaj9 (3-5-7-9)', 'C7b9 Sound', 'C Minor 11', 'C Augmented'],
+                correct: 0,
+                explanation: 'Yes! Em7 (E-G-B-D) outlines the 3rd, 5th, 7th, and 9th of Cmaj7.'
+            }
+        ];
+
+        let quizState = {
+            currentIndex: 0,
+            score: 0,
+            streak: 0,
+            answered: false
+        };
+
+        function initQuiz() {
+            quizState.currentIndex = 0;
+            quizState.score = 0;
+            quizState.streak = 0;
+            renderQuizCard();
+        }
+
+        function renderQuizCard() {
+            quizState.answered = false;
+            const q = QUIZ_QUESTIONS[quizState.currentIndex];
+
+            document.getElementById('quiz-q-num').innerText = `${quizState.currentIndex + 1} / ${QUIZ_QUESTIONS.length}`;
+            document.getElementById('quiz-category-tag').innerText = q.category;
+            document.getElementById('quiz-question-text').innerText = q.question;
+
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.add('hidden');
+
+            const optionsContainer = document.getElementById('quiz-options-container');
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((optText, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-opt-btn text-left p-3.5 rounded-xl bg-studio-800 border border-studio-700 hover:border-neon-cyan text-xs font-medium text-slate-200 transition flex items-center space-x-3';
+                btn.innerHTML = `
+                    <span class="w-6 h-6 rounded-lg bg-studio-900 border border-studio-700 flex items-center justify-center font-mono text-[11px] text-slate-400 font-bold">${String.fromCharCode(65 + idx)}</span>
+                    <span>${optText}</span>
+                `;
+                btn.onclick = () => checkQuizAnswer(idx);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            if (quizState.answered) return;
+            quizState.answered = true;
+
+            const q = QUIZ_QUESTIONS[quizState.currentIndex];
+            const isCorrect = selectedIdx === q.correct;
+            const feedback = document.getElementById('quiz-feedback');
+            const options = document.querySelectorAll('.quiz-opt-btn');
+
+            if (isCorrect) {
+                quizState.score += 100;
+                quizState.streak += 1;
+                feedback.className = 'p-3.5 rounded-xl text-xs font-mono font-semibold flex items-center justify-between bg-emerald-500/10 text-emerald-400 border border-emerald-500/30';
+                feedback.innerHTML = `<span><i class="fa-solid fa-circle-check mr-2"></i>${q.explanation}</span>`;
+                options[selectedIdx].classList.add('border-emerald-500', 'bg-emerald-500/10');
+            } else {
+                quizState.streak = 0;
+                feedback.className = 'p-3.5 rounded-xl text-xs font-mono font-semibold flex items-center justify-between bg-rose-500/10 text-rose-400 border border-rose-500/30';
+                feedback.innerHTML = `<span><i class="fa-solid fa-circle-xmark mr-2"></i>Not quite. ${q.explanation}</span>`;
+                options[selectedIdx].classList.add('border-rose-500', 'bg-rose-500/10');
+                options[q.correct].classList.add('border-emerald-500');
+            }
+
+            feedback.classList.remove('hidden');
+            document.getElementById('quiz-score').innerText = quizState.score;
+            document.getElementById('quiz-streak').innerText = `${quizState.streak} 🔥`;
+        }
+
+        function nextQuizQuestion() {
+            if (quizState.currentIndex < QUIZ_QUESTIONS.length - 1) {
+                quizState.currentIndex++;
+                renderQuizCard();
+            } else {
+                // Loop around or complete
+                quizState.currentIndex = 0;
+                renderQuizCard();
+            }
+        }
+
+        function resetQuiz() {
+            quizState.score = 0;
+            quizState.streak = 0;
+            quizState.currentIndex = 0;
+            document.getElementById('quiz-score').innerText = '0';
+            document.getElementById('quiz-streak').innerText = '0 🔥';
+            renderQuizCard();
+        }
+    </script>
+</body>
+</html>
